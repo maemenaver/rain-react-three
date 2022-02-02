@@ -21,7 +21,7 @@ function App() {
 
     const cameraEl = document.querySelector('a-camera')
     cameraEl.object3D.rotation.set(1.16, -0.12, 0.27)
-    // cameraEl.setAttribute("rotation", { x: 1.16, y: -0.12, z: 0.27 })
+    cameraEl.setAttribute("rotation", { x: 1.16, y: -0.12, z: 0.27 })
     // cameraEl.setAttribute("position", { x: 0, y: 500, z: 1 })
     // cameraEl.object3D.rotation.x = THREE.Math.degToRad(45);
     // cameraEl.object3D.rotation.y = THREE.Math.degToRad(45);
@@ -35,36 +35,36 @@ function App() {
         width: 500,
         height: 500,
       })
-      // cloud.setAttribute('material', {
-      //   src: "#smoke",
-      //   transparent: true,
-      //   opacity: 0.6
-      // })
+      cloud.setAttribute('material', {
+        src: "#smoke",
+        transparent: false,
+        alphaTest: 0.2
+        // opacity: 0.6,
+
+      })
       cloud.setAttribute('position', {
         x: Math.random() * 800 - 400,
         y: 500,
         z: Math.random() * 500 - 450
       })
-      cloud.setAttribute('rotation', {
-        x: 1.16,
-        y: -0.12,
-        z: Math.random() * 360
-      })
-      cloud.object3D.position.set(Math.random() * 800 - 400,
-        500,
-        Math.random() * 500 - 450)
-      sceneEl.appendChild(cloud)
+      // cloud.setAttribute('rotation', {
+      //   x: 1.16,
+      //   y: -0.12,
+      //   z: Math.random() * 360
+      // })
+      cloud.object3D.rotation.set(1.16, -0.12, Math.random() * 360)
       console.log(cloud.object3D)
+      sceneEl.appendChild(cloud)
     }
   }, []);
 
 
   return (
     <div style={{ width: "100vw", height: "100vh" }}>
-      <Scene background={{ color: "#11111f" }} fog={{ color: "#11111f", density: 0.002, type: "exponential" }}>
-        <a-assets>
-          <img id="smoke" src="smoke.png" />
-        </a-assets>
+      <Scene inspector={{ url: "http://localhost:3000/aframe-inspector.min.js" }} background={{ color: "#11111f" }} fog={{ color: "#11111f", density: 0.002, type: "exponential" }}>
+
+        <a-image transparent id="smoke" src="smoke.png" />
+
         <a-camera />
         <Light type={"ambient"} color='#555555' />
         <Light type={"directional"} position={{ x: 0, y: 0, z: 1 }} color='#ffeedd' />
