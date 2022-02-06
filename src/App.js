@@ -37,8 +37,9 @@ function App() {
       })
       cloud.setAttribute('material', {
         src: "#smoke",
-        transparent: false,
-        alphaTest: 0.2
+        transparent: true,
+        depthTest: false
+        // alphaTest: 0.2
         // opacity: 0.6,
 
       })
